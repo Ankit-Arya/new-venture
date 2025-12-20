@@ -5,19 +5,18 @@
     <header class="border-b bg-white">
       <div class="max-w-7xl mx-auto px-6 py-10 text-center">
 
-        <p class="text-sm tracking-widest uppercase text-slate-500 mb-3">
+        <!-- <p class="text-sm tracking-widest uppercase text-slate-500 mb-3">
           Enterprise Rail Operations Platform
-        </p>
+        </p> -->
 
         <h1 class="text-4xl md:text-6xl font-bold text-slate-900">
-          Crew Scheduling
-          <span class="text-blue-700 ml-2 text-3xl align-top">v2</span>
+          Advanced Crew Opearation,Scheduling & Management
         </h1>
 
-        <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+        <!-- <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
           A centralized scheduling and crew management system designed for
           large-scale metro and rail operations.
-        </p>
+        </p> -->
 
       </div>
     </header>
