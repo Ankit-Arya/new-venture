@@ -1,0 +1,165 @@
+Navbar old 
+  <nav class="bg-gray-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+      
+      <!-- Left: Logo + Title -->
+      <div class="flex items-center space-x-3">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Delhi_Metro_logo.svg/640px-Delhi_Metro_logo.svg.png"
+          alt="DMRC Logo"
+          class="h-10 w-10 object-contain"
+        />
+        <RouterLink to="/" class="text-2xl font-bold  tracking-wide hover:text-gray-300 transition">
+          DMRC
+        </RouterLink>
+      </div>
+ 
+      <!-- Right: Auth Controls -->
+      <div class="flex items-center">
+        <template v-if="!isLoggedIn">
+          <button
+            @click="openLogin"
+            class="px-4 py-2 text-sm rounded bg-gray-800 hover:bg-gray-700 transition"
+          >
+            Login
+          </button>
+          <button
+            @click="openSignup"
+            class="ml-2 px-4 py-2 text-sm rounded border border-gray-400 hover:bg-white hover:text-gray-900 transition"
+          >
+            Sign Up
+          </button>
+        </template>
+
+        <template v-else>
+          <span class="mr-4 text-sm text-gray-300">Welcome, {{ userEmail }}</span>
+          
+          <RouterLink
+            to="/metro-home"
+            class="px-3 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white text-sm transition"
+          >
+            Work Space
+          </RouterLink>
+
+          <button
+            @click="logout"
+            class="ml-2 px-3 py-2 rounded bg-red-600 hover:bg-red-700 text-white text-sm transition"
+          >
+            Logout
+          </button>
+        </template>
+      </div>
+    </div>
+  </nav>
+
+  ----------------------------------------------------------------------------------------------------------------
+  <template>
+  <div class="min-h-screen bg-gray-100 flex flex-col">
+    <!-- Header / Hero Section -->
+    <header class="bg-gradient-to-r from-gray-900 via-red-800 to-gray-700 text-white py-16 px-6 shadow-lg relative">
+
+
+      <!-- Heading -->
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-4xl font-extrabold mb-4 animate-fadeIn">Crew Scheduling Software</h1>
+        <p class="text-lg text-gray-200 animate-fadeIn delay-200">
+          Designed and developed by the CSS Cell at DMRC, this fast, efficient and user-friendly system is transforming crew scheduling.
+        </p>
+      </div>
+    </header>
+
+    <!-- Animated Highlights Section -->
+    <section class="flex-1 max-w-5xl mx-auto py-16 px-6 space-y-12">
+      <!-- Highlight 1 -->
+      <div class="bg-white rounded-xl shadow-md p-8 flex items-center space-x-6 animate-slideInLeft">
+        <div class="text-5xl text-red-700">📘</div>
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">100+ Trip Charts Generated</h3>
+          <p class="text-gray-600">Enabling better planning and smoother operations across the network.</p>
+        </div>
+      </div>
+
+      <!-- Highlight 2 -->
+      <div class="bg-white rounded-xl shadow-md p-8 flex items-center space-x-6 animate-slideInRight">
+        <div class="text-5xl text-blue-700">💼</div>
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Manpower Cost Savings</h3>
+          <p class="text-gray-600">Automation has saved hundreds of hours in manual planning and coordination.</p>
+        </div>
+      </div>
+
+      <!-- Highlight 3 -->
+      <div class="bg-white rounded-xl shadow-md p-8 flex items-center space-x-6 animate-slideInLeft">
+        <div class="text-5xl text-green-700">📄</div>
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Crew Control & TO Reports</h3>
+          <p class="text-gray-600">Instantly generate reports for crew management and train operations in a few clicks.</p>
+        </div>
+      </div>
+
+      <!-- Highlight 4 -->
+      <div class="bg-white rounded-xl shadow-md p-8 flex items-center space-x-6 animate-slideInRight">
+        <div class="text-5xl text-purple-700">⚡</div>
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Fast, Efficient, Scalable</h3>
+          <p class="text-gray-600">Built for the scale of DMRC with enterprise-grade performance.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+-------------------------------
+Trip Charting page template
+
+<template>
+  <section class="min-h-screen flex flex-col items-center justify-start bg-gray-900 text-white p-6">
+    <div class="w-full max-w-4xl mt-10 bg-gray-800 rounded-xl shadow-xl p-8">
+      
+      <!-- Header -->
+      <h1 class="text-3xl font-bold text-center mb-6 text-red-500">DMRC Trip Charting Solution</h1>
+      <p class="text-center text-gray-300 mb-8">
+        Upload the timetable file and configure stepping back times for accurate trip chart generation.
+      </p>
+
+      <!-- File Upload Section -->
+      <div class="mb-6">
+        <label class="block mb-2 font-semibold text-gray-200">Timetable File</label>
+        <div
+          class="border-2 border-gray-600 hover:border-red-500 rounded-lg p-6 text-center cursor-pointer transition bg-gray-700"
+          @dragover.prevent
+          @drop.prevent="handleDrop"
+          @click="triggerFileInput"
+        >
+          <input type="file" ref="fileInput" class="hidden" @change="handleFileUpload" />
+          <p class="text-gray-300">
+            Drag & drop your timetable here, or click to browse
+          </p>
+        </div>
+        <p v-if="fileName" class="mt-2 text-green-400 font-medium">{{ fileName }} selected</p>
+      </div>
+
+      <!-- Stepping Back Entries Section -->
+      <div class="mb-6">
+        <label class="block mb-2 font-semibold text-gray-200">Stepping Back Entries</label>
+        <div v-for="(entry, idx) in form.steppingBack" :key="idx" class="bg-gray-700 p-4 rounded mb-2 relative border border-gray-600">
+          <div class="grid grid-cols-3 gap-4">
+            <input v-model="entry.station" placeholder="Station Name" class="p-2 rounded bg-gray-800 border border-gray-600 w-full" />
+            <input v-model="entry.start" type="time" class="p-2 rounded bg-gray-800 border border-gray-600 w-full" />
+            <input v-model="entry.end" type="time" class="p-2 rounded bg-gray-800 border border-gray-600 w-full" />
+          </div>
+          <button type="button" @click="removeEntry(idx)" class="absolute top-2 right-2 text-red-400 hover:text-red-600 font-bold">✖</button>
+        </div>
+        <button type="button" @click="addEntry" class="mt-2 py-2 px-4 rounded bg-blue-600 hover:bg-blue-700 transition font-semibold">
+          ➕ Add Stepping Back Entry
+        </button>
+      </div>
+
+      <!-- Submit Button -->
+      <button @click="submitSimulation" class="w-full py-3 rounded bg-gradient-to-r from-red-600 to-blue-700 hover:from-red-700 hover:to-blue-800 text-lg font-semibold transition">
+        Submit Trip Chart Simulation
+      </button>
+
+    </div>
+  </section>
+</template>
