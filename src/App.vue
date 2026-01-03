@@ -64,11 +64,23 @@
       >
         <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
 
-          <!-- Header -->
-          <div class="bg-gradient-to-r from-cyan-600 to-cyan-500 text-white px-6 py-4">
-            <h2 class="text-2xl font-semibold">Sign In</h2>
-            <p class="text-gray-200 text-sm">Enter your credentials to access the platform</p>
-          </div>
+        <!-- Header -->
+        <div class="relative bg-gradient-to-r from-cyan-600 to-cyan-500 text-white px-6 py-4">
+          <h2 class="text-2xl font-semibold">Sign In</h2>
+          <p class="text-gray-200 text-sm">
+            Enter your credentials to access the platform
+          </p>
+
+          <!-- Close Button -->
+          <button
+            @click="showLogin = false"
+            class="absolute top-4 right-4 text-white text-2xl leading-none hover:text-gray-200"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
+
 
           <!-- Body -->
           <div class="px-6 py-8">
@@ -137,11 +149,23 @@
       >
         <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
 
-          <!-- Header -->
-          <div class="bg-gradient-to-r from-gray-800 to-gray-700 text-white px-6 py-4">
-            <h2 class="text-2xl font-semibold">Request Access</h2>
-            <p class="text-gray-300 text-sm">Register your account to join the enterprise platform</p>
-          </div>
+        <!-- Header -->
+        <div class="relative bg-gradient-to-r from-gray-800 to-gray-700 text-white px-6 py-4">
+          <h2 class="text-2xl font-semibold">Request Access</h2>
+          <p class="text-gray-300 text-sm">
+            Register your account to join the enterprise platform
+          </p>
+
+          <!-- Close Button -->
+          <button
+            @click="showSignup = false"
+            class="absolute top-4 right-4 text-white text-2xl leading-none hover:text-gray-300"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
+
 
           <!-- Body -->
           <div class="px-6 py-8">
