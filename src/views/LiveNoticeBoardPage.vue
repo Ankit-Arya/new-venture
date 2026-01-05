@@ -122,7 +122,7 @@
   
   const fetchNotices = async () => {
     try {
-      const res = await fetch('http://localhost:8000/notices')
+      const res = await fetch('http://72.61.236.129:8000/notices')
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
       liveNotices.value = await res.json()
     } catch (err) {
@@ -136,7 +136,7 @@
   
   const downloadFile = async (fileId) => {
     try {
-      const res = await fetch(`http://localhost:8000/files/${fileId}`)
+      const res = await fetch(`http://72.61.236.129:8000/files/${fileId}`)
       if (!res.ok) throw new Error('Failed to download file')
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)

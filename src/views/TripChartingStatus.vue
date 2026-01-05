@@ -57,7 +57,7 @@ let filePolling = null
 const fetchStatus = async () => {
   try {
     // const res = await fetch(`http://34.131.163.51:8000/status/${executionId.value}`)
-    const res = await fetch(`http://localhost:8000/status/${executionId.value}`)
+    const res = await fetch(`http://72.61.236.129:8000/status/${executionId.value}`)
     if (!res.ok) throw new Error('Failed to fetch status')
     const data = await res.json()
     steps.value = data.steps
@@ -76,7 +76,7 @@ const fetchStatus = async () => {
 // --- Check if multiple files exist ---
 const checkFileAvailability = async () => {
   // const baseUrl = 'http://34.131.163.51:8000/download/'
-  const baseUrl = 'http://localhost:8000/download/'
+  const baseUrl = 'http://72.61.236.129:8000/download/'
   const possibleFiles = [
     `trip_chart_${executionId.value}.xlsx`,
     `duty_trip_break_summary_${executionId.value}.xlsx`,
@@ -103,7 +103,7 @@ const checkFileAvailability = async () => {
 const downloadFile = async (fileName) => {
   try {
     // const res = await fetch(`http://34.131.163.51:8000/download/${fileName}`)
-    const res = await fetch(`http://localhost:8000/download/${fileName}`)
+    const res = await fetch(`http://72.61.236.129:8000/download/${fileName}`)
     if (!res.ok) throw new Error('File not ready')
 
     const blob = await res.blob()

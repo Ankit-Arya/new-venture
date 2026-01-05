@@ -308,7 +308,7 @@
     }
   
     try {
-      const res = await axios.post('http://127.0.0.1:8000/login', {
+      const res = await axios.post('http://72.61.236.129:8000/login', {
         email: loginEmail.value,
         password: loginPassword.value
       })
@@ -333,7 +333,7 @@
     }
   
     try {
-      await axios.post('http://127.0.0.1:8000/signup', {
+      await axios.post('http://72.61.236.129:8000/signup', {
         email: signupEmail.value,
         password: signupPassword.value
       })
