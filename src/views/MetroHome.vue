@@ -144,13 +144,13 @@ const successMsg = ref('')
 const isCancelling = ref(false)
 const showConfirmModal = ref(false)
 
-
+const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
 const liveNotices = ref([])
 
 const fetchNotices = async () => {
   try {
     // const res = await fetch('http://34.131.163.51:8000/notices')
-    const res = await fetch('http://72.61.236.129:8000/notices')
+    const res = await fetch(`${API_BASE_URL}/notices`)
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
     liveNotices.value = await res.json()
   } catch (err) {
@@ -212,7 +212,7 @@ const cancelSimulation = async () => {
 
   try {
     // const res = await fetch(`http://34.131.163.51:8000/cancel/${id}`, {
-    const res = await fetch(`http://72.61.236.129:8000/cancel/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/cancel/${id}`, {
       method: 'DELETE',
     })
 
@@ -234,7 +234,7 @@ const cancelSimulation = async () => {
 const downloadFile = async (fileId) => {
   try {
     // const res = await fetch(`http://34.131.163.51:8000/files/${fileId}`)
-    const res = await fetch(`http://72.61.236.129:8000/files/${fileId}`)
+    const res = await fetch(`${API_BASE_URL}/files/${fileId}`)
     if (!res.ok) throw new Error('Failed to download file')
     const blob = await res.blob()
     const url = URL.createObjectURL(blob)

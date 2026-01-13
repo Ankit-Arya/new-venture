@@ -240,6 +240,7 @@
   const router = useRouter()
   const auth = useAuthStore()
   
+  const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
   /* ---------- STATE ---------- */
   const showLogin = ref(false)
   const showSignup = ref(false)
@@ -308,7 +309,7 @@
     }
   
     try {
-      const res = await axios.post('http://72.61.236.129:8000/login', {
+      const res = await axios.post(`${API_BASE_URL}/login`, {
         email: loginEmail.value,
         password: loginPassword.value
       })
@@ -333,7 +334,7 @@
     }
   
     try {
-      await axios.post('http://72.61.236.129:8000/signup', {
+      await axios.post(`${API_BASE_URL}/signup`, {
         email: signupEmail.value,
         password: signupPassword.value
       })

@@ -1,218 +1,138 @@
 <template>
-  <div class="min-h-screen flex flex-col">
-    <!-- Hero / Welcome Section -->
-    <header class="relative overflow-hidden py-3 px-6 text-center bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300">
-      <!-- Decorative Circles -->
-      <div class="absolute -top-16 -left-16 w-64 h-64 bg-blue-400 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-      <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-indigo-400 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+  <div class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
 
-      <div class="relative z-10 max-w-3xl mx-auto">
-        <h1 class="text-3xl font-extrabold text-gray-900 mb-4 animate-fadeInUp">
-          DMRC Trip Charting
+    <!-- HEADER -->
+    <header class="border-b bg-white">
+      <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold text-slate-900">
+          DMRC Trip Charting Solution
         </h1>
-        <p class="text-lg text-gray-800 animate-fadeInUp delay-150">
-          Upload timetable and configure stepping back timings
+        <p class="mt-3 text-slate-600">
+          Upload timetable and configure stepping back parameters for chart generation.
         </p>
       </div>
     </header>
 
-    <!-- Upload + Form Section -->
-    <section class="bg-gradient-to-br from-white via-blue-50 to-blue-100 py-16 px-6">
-      <div class="max-w-5xl mx-auto space-y-12">
-        
-        <!-- Additional Time Configurations -->
-        <div>
-  <h2 class="text-2xl font-bold text-blue-800 mb-4">⏱️ Additional Time Settings</h2>
+    <!-- MAIN CONTENT -->
+    <main class="flex-1">
+      <section class="max-w-7xl mx-auto px-6 py-16 space-y-16">
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- PARAMETERS + TIMETABLE TYPE -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-    <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
-  <div class="mb-4">
-    <h3 class="text-sm font-semibold text-slate-800">
-      Execution Parameters (Backend Controlled)
-    </h3>
-    <p class="text-xs text-slate-500 mt-1">
-      These values are fixed and applied during execution.
-    </p>
-  </div>
+          <!-- APPROVED PARAMETERS -->
+          <div>
+            <h2 class="text-2xl font-semibold text-slate-900 mb-4">
+              Approved Input Parameters (ATO)
+            </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-    <!-- Duty Hours -->
-    <div class="flex justify-between">
-      <span class="text-slate-600">Duty Hours</span>
-      <span class="font-medium text-slate-900">08:10</span>
-    </div>
+            <div class="bg-white border border-slate-300 rounded-lg p-6">
+              <p class="text-sm text-slate-500 mb-4">
+                Backend-controlled execution parameters (read-only).
+              </p>
 
-    <!-- Running Hours -->
-    <div class="flex justify-between">
-      <span class="text-slate-600">Running Hours</span>
-      <span class="font-medium text-slate-900">06:00</span>
-    </div>
+              <div class="grid grid-cols-2 gap-3 text-sm">
+                <div class="flex justify-between border rounded p-2">
+                  <span class="text-slate-600">Duty Hours Max</span>
+                  <span class="font-medium">~ 08:30</span>
+                </div>
 
-    <!-- Single Run Max -->
-    <div class="flex justify-between">
-      <span class="text-slate-600">Single Run Max</span>
-      <span class="font-medium text-slate-900">03:00</span>
-    </div>
+                <div class="flex justify-between border rounded p-2">
+                  <span class="text-slate-600">Running Hours</span>
+                  <span class="font-medium">Uncapped</span>
+                </div>
 
-    <!-- Break Small -->
-    <div class="flex justify-between">
-      <span class="text-slate-600">Break Small</span>
-      <span class="font-medium text-slate-900">30 min</span>
-    </div>
+                <div class="flex justify-between border rounded p-2">
+                  <span class="text-slate-600">Single Run Max</span>
+                  <span class="font-medium">03:00</span>
+                </div>
 
-    <!-- Break Large -->
-    <div class="flex justify-between">
-      <span class="text-slate-600">Break Large</span>
-      <span class="font-medium text-slate-900">50 min</span>
-    </div>
-  </div>
-</div>
+                <div class="flex justify-between border rounded p-2">
+                  <span class="text-slate-600">Short Break</span>
+                  <span class="font-medium">30 min</span>
+                </div>
 
-    <!-- <div>
-      <label class="font-semibold text-blue-700">Duty Hours</label>
-      <input
-        type="time"
-        v-model="form.dutyHours"
-        value="00:00"
-        @input="validateHH($event, 'dutyHours')"
-        class="p-2 rounded border border-gray-300 w-full focus:ring focus:ring-blue-200"
-      />
-
-    </div> -->
-
-    <!-- <div>
-      <label class="font-semibold text-blue-700">Running Hours</label>
-      <input
-            type="time"
-            v-model="form.runningHours"
-            value="00:00"
-            @input="validateHH($event, 'runningHours')"
-            class="p-2 rounded border border-gray-300 w-full focus:ring focus:ring-blue-200"
-          />
-    </div> -->
-
-    <!-- <div>
-      <label class="font-semibold text-blue-700">Single Run Max</label>
-      <input
-            type="time"
-            v-model="form.singleRunMax"
-            value="00:00"
-            @input="validateHH($event, 'singleRunMax')"
-            class="p-2 rounded border border-gray-300 w-full focus:ring focus:ring-blue-200"
-          />
-    </div> -->
-
-    <!-- Minute-only fields -->
-    <!-- <div>
-      <label class="font-semibold text-blue-700">Break Small (minutes)</label>
-      <input type="number" min="0" v-model.number="form.breakSmall"
-             class="p-2 rounded border border-gray-300 w-full focus:ring focus:ring-blue-200">
-    </div>
-
-    <div>
-      <label class="font-semibold text-blue-700">Break Large (minutes)</label>
-      <input type="number" min="0" v-model.number="form.breakLarge"
-             class="p-2 rounded border border-gray-300 w-full focus:ring focus:ring-blue-200">
-    </div> -->
-
-  </div>
-</div>
-        <!-- 🧭 Timetable Type Selection (NEW UI) -->
-        <div>
-          <h2 class="text-2xl font-bold text-blue-800 mb-4">🗓️ Timetable Type</h2>
-          <p class="text-gray-600 mb-4">
-            The results will always be optimized. Choosing the correct run type (large or small) helps the system use the best settings for your timetable.
-
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <label
-              class="flex items-center gap-2 bg-white border border-blue-300 rounded-md px-4 py-2 shadow-sm hover:bg-blue-100 cursor-pointer transition"
-            >
-              <input type="radio" value="large" v-model="form.timetableType" />
-              <span class="text-blue-800 font-medium">Large Run (Weekday)</span>
-            </label>
-
-            <label
-              class="flex items-center gap-2 bg-white border border-blue-300 rounded-md px-4 py-2 shadow-sm hover:bg-blue-100 cursor-pointer transition"
-            >
-              <input type="radio" value="small" v-model="form.timetableType" />
-              <span class="text-blue-800 font-medium">Small Run (Holiday)</span>
-            </label>
+                <div class="flex justify-between border rounded p-2">
+                  <span class="text-slate-600">Long Break</span>
+                  <span class="font-medium">50 min</span>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- TIMETABLE TYPE -->
+          <div>
+            <h2 class="text-2xl font-semibold text-slate-900 mb-4">
+              Timetable Type
+            </h2>
+
+            <p class="text-slate-600 mb-4">
+              Select the applicable timetable category to optimize chart generation.
+            </p>
+
+            <div class="space-y-3">
+              <label class="flex items-center gap-3 border rounded-lg p-4 bg-white cursor-pointer hover:border-blue-600">
+                <input type="radio" value="large" v-model="form.timetableType" />
+                <span class="font-medium">Weekday</span>
+              </label>
+
+              <label class="flex items-center gap-3 border rounded-lg p-4 bg-white cursor-pointer hover:border-blue-600">
+                <input type="radio" value="small" v-model="form.timetableType" />
+                <span class="font-medium">
+                  Sat / Sun / Holidays / Special Operations
+                </span>
+              </label>
+            </div>
+          </div>
+
         </div>
-        
 
-
-        <!-- Stepping Back Configuration -->
+        <!-- STEPPING BACK -->
         <div>
-          <h2 class="text-2xl font-bold text-blue-800 mb-4">🕒 Stepping Back Configuration</h2>
-          <p class="text-gray-600 mb-6">
-            Configure stepping back times for SBC1 and SBC2.
+          <h2 class="text-2xl font-semibold text-slate-900 mb-4">
+            Stepping Back Configuration
+          </h2>
+
+          <p class="text-slate-600 mb-6">
+            Configure terminal and intermediate stepping back intervals.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <!-- SBC1 -->
-            <div class="bg-white border-2 border-blue-200 rounded-xl p-5 shadow-sm">
-              <h3 class="text-lg font-semibold text-blue-800 mb-3">
-                SBC1 → ILOK
-              </h3>
+            <div class="bg-white border rounded-lg p-6">
+              <h3 class="font-semibold mb-4">SBC1 → ILOK</h3>
 
               <div class="space-y-3">
-                <select
-                  v-model="form.sbc1.enabled"
-                  class="w-full p-2 border rounded focus:ring focus:ring-blue-200"
-                >
+                <select v-model="form.sbc1.enabled" class="w-full border rounded p-2">
                   <option :value="false">Disabled</option>
                   <option :value="true">Enabled</option>
                 </select>
 
                 <div class="grid grid-cols-2 gap-3">
-                  <input
-                    v-model="form.sbc1.start"
-                    type="time"
-                    :disabled="!form.sbc1.enabled"
-                    class="p-2 border rounded focus:ring focus:ring-blue-200"
-                  />
-                  <input
-                    v-model="form.sbc1.end"
-                    type="time"
-                    :disabled="!form.sbc1.enabled"
-                    class="p-2 border rounded focus:ring focus:ring-blue-200"
-                  />
+                  <input type="time" v-model="form.sbc1.start" :disabled="!form.sbc1.enabled"
+                         class="border rounded p-2" />
+                  <input type="time" v-model="form.sbc1.end" :disabled="!form.sbc1.enabled"
+                         class="border rounded p-2" />
                 </div>
               </div>
             </div>
 
             <!-- SBC2 -->
-            <div class="bg-white border-2 border-blue-200 rounded-xl p-5 shadow-sm">
-              <h3 class="text-lg font-semibold text-blue-800 mb-3">
-                SBC2 → KTNR
-              </h3>
+            <div class="bg-white border rounded-lg p-6">
+              <h3 class="font-semibold mb-4">SBC2 → KTNR</h3>
 
               <div class="space-y-3">
-                <select
-                  v-model="form.sbc2.enabled"
-                  class="w-full p-2 border rounded focus:ring focus:ring-blue-200"
-                >
+                <select v-model="form.sbc2.enabled" class="w-full border rounded p-2">
                   <option :value="false">Disabled</option>
                   <option :value="true">Enabled</option>
                 </select>
 
                 <div class="grid grid-cols-2 gap-3">
-                  <input
-                    v-model="form.sbc2.start"
-                    type="time"
-                    :disabled="!form.sbc2.enabled"
-                    class="p-2 border rounded focus:ring focus:ring-blue-200"
-                  />
-                  <input
-                    v-model="form.sbc2.end"
-                    type="time"
-                    :disabled="!form.sbc2.enabled"
-                    class="p-2 border rounded focus:ring focus:ring-blue-200"
-                  />
+                  <input type="time" v-model="form.sbc2.start" :disabled="!form.sbc2.enabled"
+                         class="border rounded p-2" />
+                  <input type="time" v-model="form.sbc2.end" :disabled="!form.sbc2.enabled"
+                         class="border rounded p-2" />
                 </div>
               </div>
             </div>
@@ -220,43 +140,73 @@
           </div>
         </div>
 
+        <!-- UPLOAD / DOWNLOAD -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-        <!-- File Upload -->
-        <div>
-          <h2 class="text-2xl font-bold text-blue-800 mb-4">📁 Upload Timetable</h2>
-          <div
-            class="border-2 border-dashed border-blue-300 hover:border-blue-500 rounded-lg p-6 text-center cursor-pointer bg-white transition hover:bg-blue-300 py-20"
-            @dragover.prevent
-            @drop.prevent="handleDrop"
-            @click="triggerFileInput"
-          >
-            <input type="file" ref="fileInput" class="hidden" @change="handleFileUpload" />
-            <p class="text-gray-600 text-2xl">
-              Drag & drop your timetable file here, or click to browse
-            </p>
-            <p v-if="fileName" class="mt-2 text-green-600 font-medium">{{ fileName }} selected</p>
+          <!-- UPLOAD -->
+          <div>
+            <h2 class="text-2xl font-semibold mb-4">
+              Upload Timetable (Template Format)
+            </h2>
+
+            <div
+              class="border-2 border-dashed rounded-lg p-8 text-center bg-white cursor-pointer hover:border-blue-600"
+              @dragover.prevent
+              @drop.prevent="handleDrop"
+              @click="triggerFileInput"
+            >
+              <input type="file" ref="fileInput" class="hidden" @change="handleFileUpload" />
+
+              <p class="text-slate-600">
+                Drag & drop timetable file here or click to browse.
+              </p>
+
+              <p v-if="fileName" class="mt-2 text-green-600 font-medium">
+                {{ fileName }} selected
+              </p>
+            </div>
+
+            <div class="mt-6 text-center">
+              <button
+                @click="submitSimulation"
+                class="px-10 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-semibold"
+              >
+                Submit for Processing
+              </button>
+            </div>
           </div>
+
+          <!-- DOWNLOAD -->
+          <div>
+            <h2 class="text-2xl font-semibold mb-4">
+              Download Timetable Template
+            </h2>
+
+            <div class="border rounded-lg p-6 bg-white text-center">
+              <p class="text-slate-600">
+                Download the approved timetable template file.
+              </p>
+            </div>
+
+            <div class="mt-6 text-center">
+              <a
+                href="/L5-timetable.csv"
+                download
+                class="inline-block bg-slate-900 hover:bg-slate-800 text-white px-10 py-3 rounded-md font-semibold"
+              >
+                Download Template
+              </a>
+            </div>
+          </div>
+
         </div>
 
+      </section>
+    </main>
 
-        <!-- Submit Button -->
-        <div class="text-center">
-          <button
-            @click="submitSimulation"
-            class="px-8 py-3 rounded-md bg-emerald-600 hover:bg-emerald-700 
-                  text-white text-lg font-semibold shadow-sm hover:shadow-md 
-                  transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-emerald-300"
-          >
-            Submit 
-          </button>
-
-
-
-        </div>
-      </div>
-    </section>
   </div>
 </template>
+
 
 
 <script setup>
@@ -276,6 +226,8 @@ const auth = useAuthStore()
 const fileInput = ref(null)
 const fileObj = ref(null)
 const fileName = ref('')
+
+const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
 
 const triggerFileInput = () => {
   fileInput.value?.click()
@@ -371,7 +323,7 @@ const submitSimulation = async () => {
   payload.append('break_large', String(form.breakLarge))
 
   try {
-    const res = await fetch('http://72.61.236.129:8000/simulateL5', {
+    const res = await fetch(`${API_BASE_URL}/simulateL5`, {
       method: 'POST',
       body: payload,
     })

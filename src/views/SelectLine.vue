@@ -1,32 +1,46 @@
 <template>
-  <div class="min-h-screen bg-white text-gray-900 flex flex-col items-center justify-start px-4 py-12">
-    <!-- Title -->
-    <h1 class="text-3xl md:text-4xl font-bold mb-10 text-center">
-      🚇 Select a Metro Line to Proceed
-    </h1>
+  <div class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
 
-    <!-- Grid of Metro Lines -->
-    <div class="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <div
-        v-for="line in lines"
-        :key="line.name"
-        @click="!line.locked && goToTripChart(line.path)"
-        :class="[
-          'group rounded-xl p-6 text-xl font-semibold flex items-center justify-center border-2 transition-all duration-300 shadow-sm',
-          line.border,
-          {
-            'cursor-not-allowed opacity-50': line.locked,
-            'cursor-pointer hover:scale-[1.02] hover:shadow-md': !line.locked,
-            [line.hover]: !line.locked,
-            [line.textHover]: !line.locked,
-          }
-        ]"
-      >
-        {{ line.name }}
+    <!-- HEADER -->
+    <header class="border-b bg-white">
+      <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold text-slate-900">
+          Metro Line Selection
+        </h1>
+        <p class="mt-3 text-slate-600">
+          Select an operational metro line to proceed with trip chart generation.
+        </p>
       </div>
-    </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 w-full">
+      <section class="max-w-7xl mx-auto px-6 py-16">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div
+            v-for="line in lines"
+            :key="line.name"
+            @click="!line.locked && goToTripChart(line.path)"
+            :class="[
+              'border rounded-lg p-8 flex items-center justify-center text-lg font-semibold transition-all duration-200',
+              line.locked
+                ? 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed'
+                : 'bg-white border-slate-300 text-slate-900 cursor-pointer hover:border-blue-600 hover:bg-blue-50'
+            ]"
+          >
+            {{ line.name }}
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+
   </div>
 </template>
+
 
 <script setup>
 import { useRouter } from 'vue-router'
