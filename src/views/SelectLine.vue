@@ -47,76 +47,24 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const lines = [
+
   {
-    name: 'Red Line',
-    path: 'red',
-    border: 'border-red-300',
-    hover: 'hover:bg-red-600',
-    textHover: 'hover:text-white',
-  },
-  {
-    name: 'Blue Line',
+    name: 'Multiple CCP Line',
     path: 'blue',
     border: 'border-blue-300',
     hover: 'hover:bg-blue-600',
     textHover: 'hover:text-white',
     // locked: true,
   },
+
   {
-    name: 'Yellow Line',
-    path: 'yellow',
-    border: 'border-yellow-300',
-    hover: 'hover:bg-yellow-400',
-    textHover: 'hover:text-black',
-    locked: true,
-  },
-  {
-    name: 'Green Line',
+    name: 'Single CCP Line',
     path: 'green',
     border: 'border-green-300',
     hover: 'hover:bg-green-600',
     textHover: 'hover:text-white',
   },
-  {
-    name: 'Pink Line',
-    path: 'pink',
-    border: 'border-pink-300',
-    hover: 'hover:bg-pink-500',
-    textHover: 'hover:text-white',
-    locked: true,
-  },
-  {
-    name: 'Magenta Line',
-    path: 'magenta',
-    border: 'border-purple-300',
-    hover: 'hover:bg-purple-600',
-    textHover: 'hover:text-white',
-    locked: true,
-  },
-  {
-    name: 'Orange Line',
-    path: 'orange',
-    border: 'border-orange-300',
-    hover: 'hover:bg-orange-500',
-    textHover: 'hover:text-black',
-    locked: true,
-  },
-  {
-    name: 'Aqua Line',
-    path: 'aqua',
-    border: 'border-cyan-300',
-    hover: 'hover:bg-cyan-500',
-    textHover: 'hover:text-black',
-    locked: true,
-  },
-  {
-    name: 'Golden Line (Coming Soon)',
-    path: 'golden',
-    border: 'border-yellow-400',
-    hover: 'hover:bg-yellow-500',
-    textHover: 'hover:text-black',
-    locked: true,
-  },
+
 ]
 
 function goToTripChart(linePath) {

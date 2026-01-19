@@ -5,7 +5,7 @@
     <header class="border-b bg-white">
       <div class="max-w-7xl mx-auto px-6 py-10 text-center">
         <h1 class="text-3xl md:text-5xl font-bold text-slate-900">
-          DMRC Trip Charting Solution
+          METROLINER Trip Charting Solution
         </h1>
         <p class="mt-3 text-slate-600">
           Upload timetable and configure stepping back parameters for chart generation.
@@ -18,74 +18,7 @@
       <section class="max-w-7xl mx-auto px-6 py-16 space-y-16">
 
         <!-- PARAMETERS + TIMETABLE TYPE -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-          <!-- APPROVED PARAMETERS -->
-          <div>
-            <h2 class="text-2xl font-semibold text-slate-900 mb-4">
-              Approved Input Parameters (ATO)
-            </h2>
-
-            <div class="bg-white border border-slate-300 rounded-lg p-6">
-              <p class="text-sm text-slate-500 mb-4">
-                Backend-controlled execution parameters (read-only).
-              </p>
-
-              <div class="grid grid-cols-2 gap-3 text-sm">
-                <div class="flex justify-between border rounded p-2">
-                  <span class="text-slate-600">Duty Hours Max</span>
-                  <span class="font-medium">~ 08:30</span>
-                </div>
-
-                <div class="flex justify-between border rounded p-2">
-                  <span class="text-slate-600">Running Hours</span>
-                  <span class="font-medium">Uncapped</span>
-                </div>
-
-                <div class="flex justify-between border rounded p-2">
-                  <span class="text-slate-600">Single Run Max</span>
-                  <span class="font-medium">03:00</span>
-                </div>
-
-                <div class="flex justify-between border rounded p-2">
-                  <span class="text-slate-600">Short Break</span>
-                  <span class="font-medium">30 min</span>
-                </div>
-
-                <div class="flex justify-between border rounded p-2">
-                  <span class="text-slate-600">Long Break</span>
-                  <span class="font-medium">50 min</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TIMETABLE TYPE -->
-          <div>
-            <h2 class="text-2xl font-semibold text-slate-900 mb-4">
-              Timetable Type
-            </h2>
-
-            <p class="text-slate-600 mb-4">
-              Select the applicable timetable category to optimize chart generation.
-            </p>
-
-            <div class="space-y-3">
-              <label class="flex items-center gap-3 border rounded-lg p-4 bg-white cursor-pointer hover:border-blue-600">
-                <input type="radio" value="large" v-model="form.timetableType" />
-                <span class="font-medium">Weekday</span>
-              </label>
-
-              <label class="flex items-center gap-3 border rounded-lg p-4 bg-white cursor-pointer hover:border-blue-600">
-                <input type="radio" value="small" v-model="form.timetableType" />
-                <span class="font-medium">
-                  Sat / Sun / Holidays / Special Operations
-                </span>
-              </label>
-            </div>
-          </div>
-
-        </div>
 
         <!-- STEPPING BACK -->
         <div>
@@ -101,7 +34,7 @@
 
             <!-- SBC1 -->
             <div class="bg-white border rounded-lg p-6">
-              <h3 class="font-semibold mb-4">SBC1 → ILOK</h3>
+              <h3 class="font-semibold mb-4">Intermediate/Terminal Stepping Back Location 1</h3>
 
               <div class="space-y-3">
                 <select v-model="form.sbc1.enabled" class="w-full border rounded p-2">
@@ -120,7 +53,7 @@
 
             <!-- SBC2 -->
             <div class="bg-white border rounded-lg p-6">
-              <h3 class="font-semibold mb-4">SBC2 → KTNR</h3>
+              <h3 class="font-semibold mb-4">Intermediate/Terminal Stepping Back Location 2</h3>
 
               <div class="space-y-3">
                 <select v-model="form.sbc2.enabled" class="w-full border rounded p-2">
