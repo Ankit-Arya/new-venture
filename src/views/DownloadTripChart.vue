@@ -110,6 +110,7 @@ const executionId = ref('')
 const loading = ref(false)
 const error = ref('')
 const success = ref(false)
+const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
 
 const downloadFile = async () => {
   if (!executionId.value) return
@@ -121,7 +122,7 @@ const downloadFile = async () => {
   console.log('executionId.value--',executionId.value)
   try {
     // const response = await fetch(`http://34.131.163.51:8000/download/${executionId.value}`)
-    const response = await fetch(`http://72.61.236.129:8000/download/${executionId.value}`)
+    const response = await fetch(`${API_BASE_URL}/download/${executionId.value}`)
     if (!response.ok) {
       const data = await response.json()
       error.value = data?.error || 'Unknown error'

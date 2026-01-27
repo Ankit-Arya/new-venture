@@ -18,6 +18,74 @@
       <section class="max-w-7xl mx-auto px-6 py-16 space-y-16">
 
         <!-- PARAMETERS + TIMETABLE TYPE -->
+        <div class="bg-white border rounded-lg p-4">
+          <h3 class="font-semibold mb-3">Timetable Settings</h3>
+
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <!-- Timetable Type -->
+            <div class="flex flex-col gap-1">
+              <label class="text-gray-600">Timetable Type</label>
+              <select v-model="form.timetableType" class="border rounded p-2">
+                <option value="large">Regular Weekdays</option>
+                <option value="small">Special Holidays / Weekends</option>
+              </select>
+            </div>
+
+            <!-- Single Run Max -->
+            <div class="flex flex-col gap-1">
+              <label class="text-gray-600">Single Trip Max Duration</label>
+              <input
+                type="time"
+                v-model="form.singleRunMax"
+                class="border rounded p-2"
+              />
+            </div>
+
+            <!-- Duty Hours -->
+            <div class="flex flex-col gap-1">
+              <label class="text-gray-600">Duty Hours</label>
+              <input
+                type="time"
+                v-model="form.dutyHours"
+                class="border rounded p-2"
+              />
+            </div>
+
+            <!-- Running Hours -->
+            <div class="flex flex-col gap-1">
+              <label class="text-gray-600">Operating / Running Hours</label>
+              <input
+                type="time"
+                v-model="form.runningHours"
+                class="border rounded p-2"
+              />
+            </div>
+
+            <!-- Small Break -->
+            <div class="flex flex-col gap-1">
+              <label class="text-gray-600">Optional Break (min)</label>
+              <input
+                type="number"
+                min="0"
+                v-model="form.breakSmall"
+                class="border rounded p-2"
+                placeholder="e.g. 10"
+              />
+            </div>
+
+            <!-- Large Break -->
+            <div class="flex flex-col gap-1">
+              <label class="text-gray-600">Mandatory Break (min)</label>
+              <input
+                type="number"
+                min="0"
+                v-model="form.breakLarge"
+                class="border rounded p-2"
+                placeholder="e.g. 30"
+              />
+            </div>
+          </div>
+        </div>
 
 
         <!-- STEPPING BACK -->
@@ -200,8 +268,8 @@ const form = reactive({
 
   // Other configuration
   timetableType: 'large',
-  // dutyHours: '00:00',
-  // runningHours: '00:00',
+  dutyHours: '00:00',
+  runningHours: '00:00',
   singleRunMax: '00:00',
   breakSmall: 0,
   breakLarge: 0,

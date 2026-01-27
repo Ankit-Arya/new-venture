@@ -172,7 +172,8 @@ import { useRouter } from 'vue-router'
   const successMsg = ref('')
   const isCancelling = ref(false)
   const showConfirmModal = ref(false)
-  
+  const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
+
   const goToStatus = () => {
     const id = executionIdInput.value.trim()
     if (!id) return (errorMsg.value = 'Please enter a valid Execution ID.')
@@ -194,7 +195,7 @@ import { useRouter } from 'vue-router'
     isCancelling.value = true
   
     try {
-      const res = await fetch(`http://72.61.236.129:8000/cancel/${id}`, { method: 'DELETE' })
+      const res = await fetch(`${API_BASE_URL}/cancel/${id}`, { method: 'DELETE' })
       if (!res.ok) {
         const errData = await res.json()
         throw new Error(errData.detail || 'Failed to cancel simulation.')
