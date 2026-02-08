@@ -1,28 +1,45 @@
 <template>
-  <section class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-900 via-gray-900 to-red-700 text-white p-6">
-    <div class="w-full max-w-3xl bg-black bg-opacity-70 rounded-xl shadow-2xl p-8">
-      
-      <h1 class="text-3xl font-extrabold text-center mb-6 text-red-400 animate-pulse">
-        🛠️ Real-Time Status
+  <section
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-neutral-900 text-slate-100 p-6"
+  >
+    <div
+      class="w-full max-w-3xl rounded-lg bg-slate-900/90 border border-slate-700 shadow-xl p-8"
+    >
+      <h1
+        class="text-2xl font-semibold text-center mb-8 text-slate-200 tracking-wide"
+      >
+        System Status
       </h1>
 
       <div class="space-y-3">
         <div
           v-for="(step, idx) in steps"
           :key="idx"
-          class="flex items-start space-x-3 p-3 rounded-lg bg-gray-800 animate-fade-in"
+          class="flex items-start gap-4 p-4 rounded-md bg-slate-800 border border-slate-700 transition-colors"
         >
-          <div class="text-xl w-6 flex-shrink-0">
-            <span v-if="step.status === 'completed'" class="text-green-400">✅</span>
-            <span v-else-if="step.status === 'running' || step.status === 'WIP'" class="text-yellow-400 animate-spin">🔄</span>
-            <span v-else-if="step.status === 'pending'" class="text-gray-400">⏳</span>
-            <span v-else-if="step.status === 'error'" class="text-red-400">❌</span>
-            <span v-else class="text-gray-500">•</span>
+          <!-- Status indicator -->
+          <div class="flex-shrink-0 mt-1">
+            <span
+              class="block h-3 w-3 rounded-full"
+              :class="{
+                'bg-emerald-500': step.status === 'completed',
+                'bg-amber-400': step.status === 'running' || step.status === 'WIP',
+                'bg-slate-500': step.status === 'pending',
+                'bg-red-500': step.status === 'error',
+                'bg-slate-600': !['completed','running','WIP','pending','error'].includes(step.status)
+              }"
+            />
           </div>
 
-          <div>
+          <!-- Status text -->
+          <div class="flex-1">
             <p
-              :class="[step.status === 'error' ? 'text-red-300 font-medium' : 'text-gray-300', 'text-sm md:text-base']"
+              :class="[
+                'text-sm md:text-base leading-relaxed',
+                step.status === 'error'
+                  ? 'text-red-400 font-medium'
+                  : 'text-slate-300'
+              ]"
             >
               {{ getStatusMessage(step) }}
             </p>
@@ -30,12 +47,24 @@
         </div>
       </div>
 
-      <p v-if="fileError" class="mt-4 text-red-500 text-sm">❌ {{ fileError }}</p>
-      <p v-if="fileDownloaded" class="mt-4 text-green-400 text-sm">✅ Trip chart downloaded successfully</p>
+      <!-- Footer messages -->
+      <p
+        v-if="fileError"
+        class="mt-6 text-sm text-red-400 border-t border-slate-700 pt-4"
+      >
+        {{ fileError }}
+      </p>
 
+      <p
+        v-if="fileDownloaded"
+        class="mt-6 text-sm text-emerald-400 border-t border-slate-700 pt-4"
+      >
+        Trip chart downloaded successfully.
+      </p>
     </div>
   </section>
 </template>
+
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
@@ -43,6 +72,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const executionId = ref(route.params.executionId)
+const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
 
 const steps = ref([])
 const fileDownloaded = ref(false)
@@ -57,7 +87,7 @@ let filePolling = null
 const fetchStatus = async () => {
   try {
     // const res = await fetch(`http://34.131.163.51:8000/status/${executionId.value}`)
-    const res = await fetch(`http://72.61.236.129:8000/status/${executionId.value}`)
+    const res = await fetch(`${API_BASE_URL}/status/${executionId.value}`)
     if (!res.ok) throw new Error('Failed to fetch status')
     const data = await res.json()
     steps.value = data.steps
@@ -76,7 +106,7 @@ const fetchStatus = async () => {
 // --- Check if multiple files exist ---
 const checkFileAvailability = async () => {
   // const baseUrl = 'http://34.131.163.51:8000/download/'
-  const baseUrl = 'http://72.61.236.129:8000/download/'
+  const baseUrl = '${API_BASE_URL}/download/'
   const possibleFiles = [
     `trip_chart_${executionId.value}.xlsx`,
     `duty_trip_break_summary_${executionId.value}.xlsx`,
@@ -103,7 +133,7 @@ const checkFileAvailability = async () => {
 const downloadFile = async (fileName) => {
   try {
     // const res = await fetch(`http://34.131.163.51:8000/download/${fileName}`)
-    const res = await fetch(`http://72.61.236.129:8000/download/${fileName}`)
+    const res = await fetch(`${API_BASE_URL}/download/${fileName}`)
     if (!res.ok) throw new Error('File not ready')
 
     const blob = await res.blob()
