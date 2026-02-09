@@ -49,7 +49,14 @@ const routes = [
     name: 'SelectLine', 
     component: SelectLine, 
     meta: { requiresAuth: true } 
-  }
+  },
+  {
+  path: "/duty-summary/:executionId",
+  name: "DutySummary",
+  component: () => import("@/views/DutySummary.vue"),
+  props: true
+}
+
 ]
 
 const router = createRouter({

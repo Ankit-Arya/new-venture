@@ -97,6 +97,15 @@
               >
                 Download Report
               </button>
+              <button
+                @click="dutySummary(notice.executionId)"
+                class="mt-3 inline-flex items-center px-3 py-1.5 m-2
+                       text-xs font-medium rounded
+                       bg-emerald-500 text-white
+                       hover:bg-emerald-600 transition"
+              >
+                Duty Summary
+              </button>
             </li>
           </ul>
         </div>
@@ -107,6 +116,11 @@
 
   <script setup>
   import { ref, onMounted } from 'vue'
+
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+
   
   const liveNotices = ref([])
   const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8000`
@@ -121,6 +135,18 @@
     }
   }
   
+function dutySummary(executionId) {
+  if (!executionId) {
+    console.warn("Missing executionId")
+    return
+  }
+
+  router.push({
+    name: "DutySummary",
+    params: { executionId }
+  })
+}
+
   const copyText = (text) => navigator.clipboard.writeText(text).catch(() => {})
   
   const formatTime = (timestamp) => new Date(timestamp).toLocaleString()

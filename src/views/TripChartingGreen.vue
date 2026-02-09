@@ -191,7 +191,7 @@
 
             <div class="mt-6 text-center">
               <a
-                href="/L5-timetable.csv"
+                href="/timetable.csv"
                 download
                 class="inline-block bg-slate-900 hover:bg-slate-800 text-white px-10 py-3 rounded-md font-semibold"
               >
